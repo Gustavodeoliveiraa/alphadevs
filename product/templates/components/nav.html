@@ -1,0 +1,73 @@
+{% load static %}
+<div class="w-100 h-75 nav-container d-flex justify-content-between position-relative ">
+    <div class=" ms-4 d-flex justify-content-start align-items-center w-75">
+
+        <div class="logo rounded"><a href={% url "products:list" %} class="w-100 h-100 d-flex"></a></div>
+        <div class="d-flex flex-column text-white ms-2 text-center fs-4">
+            <p>AlphaDevs</p>
+            <p>3D</p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center pe-3">
+        <div class="nav">
+            <i class="bi bi-list rem-4 text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+    
+            <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header nav-side-menu ">
+                    <div class="w-100 d-flex align-items-center">
+                        <div class="logo rounded"><a href={% url "products:list" %} class="w-100 h-100 d-flex"></a></div>
+                        <div class="d-flex flex-column text-black ms-2 text-center fs-4">
+                            <p>AlphaDevs</p>
+                            <p>3D</p>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="container m-2 w-100">
+                        <a href={% url "products:list" %}>
+                            <i class="bi bi-house fs-1">
+                                <p class="inline-flex  ps-2 fs-2">Home</p>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="container m-2">
+                        <a href="">
+                            <i class="bi bi-cart3 fs-1">
+                                <p class="inline-flex  ps-2 fs-2">Home</p>
+                            </i>
+                        </a>
+                    </div>
+
+                    <div class="account d-flex align-items-end">
+                        <div class="container m-2 w-100">
+                            {% if user.is_authenticated %}
+                                <i class="bi bi-person-circle fs-1"></i>
+                                <p class="inline-flex  ps-2 fs-1">{{user.username}}</p>
+                            {% else %}
+                                <a href="" class="w-100 d-flex align-item-center">
+                                    <i class="bi bi-person-circle fs-1"></i>
+                                    <p class="inline-flex  ps-2 fs-1 text-center">
+                                        Entrar
+                                    </p>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="overflow-auto">
+    <ul class="nav nav-tabs nav-category d-flex flex-nowrap">
+        {% for category in categories %}
+            <li class="nav-item">
+            <a class="nav-link text-white" href="#">{{category|title}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+</div>
+

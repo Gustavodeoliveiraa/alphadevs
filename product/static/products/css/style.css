@@ -1,0 +1,71 @@
+*, p{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+:root {
+    --color-category: #575757
+}
+
+.rem-4 {
+    font-size: 2.8rem;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.nav-container  {
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 140px;
+    position: relative;
+}
+
+.logo {
+    background-image: url('../images/novo_logo.jpeg');
+    width: 95px;
+    height: 80px;
+    background-position: center;
+    background-size: cover;
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.offcanvas-end {
+    width: 330px;
+}
+
+.nav-side-menu {
+    border-radius: 0 0 20px 20px;
+    border: 1px solid black;
+    box-shadow: 5px 5px 10px #0000008f;
+    height: 120px;
+}
+
+.account {
+    margin-top: auto;
+}
+
+.overflow-auto {
+    max-width: 100%;
+}
+
+.nav-category {
+    background-color: var(--color-category) !important;
+    scrollbar-width: auto;
+    overflow-x: auto; 
+    white-space: nowrap;
+    overflow-y: hidden;
+}
