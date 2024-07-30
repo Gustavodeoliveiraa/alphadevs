@@ -9,6 +9,10 @@ a {
     color: black;
 }
 
+.p-absolute {
+    position: absolute;
+}
+
 :root {
     --color-category: #575757
 }
@@ -37,6 +41,7 @@ a {
     background-size: cover;
 }
 
+/* side menu */
 .offcanvas-body {
     display: flex;
     flex-direction: column;
@@ -65,7 +70,23 @@ a {
 .nav-category {
     background-color: var(--color-category) !important;
     scrollbar-width: auto;
-    overflow-x: auto; 
+    overflow: scroll; 
     white-space: nowrap;
-    overflow-y: hidden;
+}
+
+.nav-category::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem */
+}
+
+.label_search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000000;
+    padding: 0.5rem;
+    border-radius: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search_product:focus {
+    outline: none; 
 }
