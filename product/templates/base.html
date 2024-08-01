@@ -15,8 +15,12 @@
 <body>
     {% include "components/nav.html" %}
     {% include "components/search_input.html" %}
-    {% block content %}
+    <div class="h-100">
+        {% block content %}
     
-    {% endblock content %}
+        {% endblock content %}
+    </div>
+    {% include "components/pagination.html" %}
+
 </body>
 </html>
