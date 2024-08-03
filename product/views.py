@@ -17,9 +17,14 @@ class Home(generic.ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         search = self.request.GET.get('search')
+        category = self.request.GET.get('category')
         if search:
             queryset = Product.objects.filter(
                 product_name__icontains=search
+            )
+        if category:
+            queryset = Product.objects.filter(
+                product_category__name__icontains=category
             )
         return queryset
 

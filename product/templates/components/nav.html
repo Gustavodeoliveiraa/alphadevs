@@ -64,7 +64,10 @@
     <ul class="nav nav-tabs nav-category d-flex flex-nowrap">
         {% for category in categories %}
             <li class="nav-item">
-            <a class="nav-link text-white" href="#">{{category|title}}</a>
+                <form method="get" action="{% url "products:list" %}" class="nav-link text-white category-form">
+                    <input type="hidden" name="category" value={{ category }}>
+                    {{category|title}}
+                </form>
             </li>
         {% endfor %}
     </ul>
