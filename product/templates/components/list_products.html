@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container mt-3 container-products justify-content-center">
-        {% for product in object_list %}
-            <div class="cover-product w-100 rounded m-1 overflow-hidden position-relative text-center d-flex flex-column">
-                <a href="{% url "products:detail" product.pk%}" class="w-100 h-100"><img class="w-100 h-100" src="{{ product.product_image.url }}" alt="{{product.product_name}}"></a>
-                <div class="w-100 position-absolute background-title-product title-product-position">
-                    <p class="text-white">{{ product.product_name }}</p>
+    {% if product_list %}
+        <div class="container mt-3 container-products justify-content-center">
+            {% for product in object_list %}
+                <div class="cover-product w-100 rounded m-1 overflow-hidden position-relative text-center d-flex flex-column">
+                    <a href="{% url "products:detail" product.pk%}" class="w-100 h-100"><img class="w-100 h-100" src="{{ product.product_image.url }}" alt="{{product.product_name}}"></a>
+                    <div class="w-100 position-absolute background-title-product title-product-position">
+                        <p class="text-white">{{ product.product_name }}</p>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-    {% include "components/pagination.html" %}
+            {% endfor %}
+        </div>
+        {% include "components/pagination.html" %}
+    {% else %}
+        <div class="container text-center mt-4">
+            <h2>Nenhum item corresponde a sua busca!</h2>
+        </div>
+    {% endif %}
 
 {% endblock content %}
