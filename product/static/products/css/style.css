@@ -1,3 +1,9 @@
+:root {
+    --color-category: #575757;
+    --color-text-gray: #272F2D;
+    --bg-color-price: rgba(26, 31, 30, 0.54);
+}
+
 *, p{
     margin: 0;
     padding: 0;
@@ -13,10 +19,6 @@ a {
 
 .p-absolute {
     position: absolute;
-}
-
-:root {
-    --color-category: #575757
 }
 
 .rem-4 {
@@ -133,4 +135,32 @@ a {
 
 .pag-container {
     bottom: 0;
+}
+
+
+/* detail page */
+.container-detail-product {
+    height: 400px;
+    width: 95%;
+}
+
+.info-products h2,
+.price p{
+    color: var(--color-text-gray);
+}
+
+.purchase {
+    background-color: var(--color-text-gray);
+    min-width: 47%;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.price {
+    background-color: var(--bg-color-price);
+    min-width: 15%;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.description {
+    border-top: 1px solid var(--color-category);
 }
