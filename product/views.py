@@ -14,6 +14,15 @@ class Home(generic.ListView):
         context["categories"] = Category.objects.all()
         return context
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get('search')
+        if search:
+            queryset = Product.objects.filter(
+                product_name__icontains=search
+            )
+        return queryset
+
 
 class DetailProduct(generic.DetailView):
     model = Product
@@ -23,4 +32,3 @@ class DetailProduct(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         return context
-
