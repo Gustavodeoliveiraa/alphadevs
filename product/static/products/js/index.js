@@ -10,3 +10,11 @@ searchInput.addEventListener('blur', ()=>{
     labelSearch.style.borderColor = "#0c0c0c";
     labelSearch.style.boxShadow = "none";
 })
+
+
+document.querySelectorAll('.category-form').forEach(form => {
+    form.addEventListener('click', (event) => {
+        event.preventDefault()
+        form.submit()
+    })
+})
