@@ -29,7 +29,11 @@ INSTALLED_APPS = [
     'product',
     'category',
     'cart',
+    'account',
 ]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
