@@ -24,7 +24,7 @@
 
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div class="offcanvas-body overflow-hidden">
                     <div class="container m-2 w-100">
                         <a href={% url "products:list" %}>
                             <i class="bi bi-house fs-1">
@@ -46,12 +46,12 @@
                                 <i class="bi bi-person-circle fs-1"></i>
                                 <p class="inline-flex  ps-2 fs-1">{{user.username}}</p>
                             {% else %}
-                                <a href="" class="w-100 d-flex align-item-center">
-                                    <i class="bi bi-person-circle fs-1"></i>
-                                    <p class="inline-flex  ps-2 fs-1 text-center">
+                                <div class="w-100 d-flex align-item-center tag-login" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="bi bi-person-circle fs-1" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                                    <p class="inline-flex  ps-2 fs-1 text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Entrar
                                     </p>
-                                </a>
+                                </div>
                             {% endif %}
                         </div>
                     </div>
@@ -73,3 +73,28 @@
     </ul>
 </div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center w-100 display-4" id="exampleModalLabel">Entrar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <form action="{% url "account:login" %}" method="post" class="d-flex justify-content-center align-items-center flex-column">
+            {% csrf_token %}
+            <div class="form-floating mb-3 w-100">
+                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+                <label for="floatingInput">Usuario</label>
+              </div>
+              <div class="form-floating w-100">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Senha</label>
+              </div>
+              <button type="submit" class="btn btn-primary mt-4 w-75">Entrar</button>
+          </form>
+          <p class="mt-4">ainda não tem uma conta ? <a href="{% url "account:register" %}" class="link-login">Registre-se</a></p>
+        </div>
+      </div>
+    </div>
+  </div>

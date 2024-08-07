@@ -18,3 +18,17 @@ document.querySelectorAll('.category-form').forEach(form => {
         form.submit()
     })
 })
+
+
+// close the side navbar when the modal for login is open
+var modalElement = document.getElementById('exampleModal');
+var offcanvasElement = document.getElementById('offcanvasRight');
+
+var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+
+modalElement.addEventListener('show.bs.modal', function () {
+    // Verifica se o offcanvas está visível e o fecha
+    if (offcanvasElement.classList.contains('show')) {
+        offcanvas.hide();
+    }
+});

@@ -95,6 +95,15 @@ a {
     outline: none; 
 }
 
+.tag-login, .tag-login p {
+    text-decoration: none;
+    color: black;
+}
+
+.tag-login:hover {
+    cursor: pointer;
+}
+
 /* list all products at homepage */
 
 .container-products {
@@ -174,4 +183,10 @@ a {
 
 .btn-register {
     background-color: var(--color-text-gray)!important;
+}
+
+.link-login {
+    color: #63A9FC;
+    text-decoration: underline;
+    text-decoration-color: #63A9FC;
 }
