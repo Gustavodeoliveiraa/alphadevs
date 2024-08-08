@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -69,7 +72,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-if os.environ.get('DEBUG') == 1:
+if os.environ.get('DEBUG') == '1':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -80,11 +83,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "DB_NAME": os.environ.get("DB_NAME"),
-            "USER": os.environ.get("DB_USER"),
+            "NAME": os.environ.get("DB_NAME"),
+            "USER": os.environ.get("USER"),
             "PASSWORD": os.environ.get("DB_PASSWORD"),
             "HOST": os.environ.get('HOST'),
-            "PORT": os.environ.get("DB_PORT")
+            "PORT": os.environ.get("PORT")
         }
     }
 
