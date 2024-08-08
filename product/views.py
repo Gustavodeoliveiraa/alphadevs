@@ -6,7 +6,7 @@ from category.models import Category
 
 class Home(generic.ListView):
     model = Product
-    paginate_by = 3
+    paginate_by = 20
     template_name = 'components/list_products.html'
 
     def get_context_data(self, **kwargs):
