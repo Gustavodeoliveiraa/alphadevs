@@ -8,6 +8,9 @@ class Cart(models.Model):
         to=User, on_delete=models.CASCADE, blank=False, null=False
     )
 
+    def __str__(self) -> str:
+        return str(self.user)
+
 
 class CartItem(models.Model):
     cart = models.ForeignKey(
@@ -17,3 +20,6 @@ class CartItem(models.Model):
         to=Product, on_delete=models.CASCADE, blank=False, null=False
     )
     quantity = models.IntegerField(default=1, blank=False, null=False)
+
+    def __str__(self) -> str:
+        return str(self.cart)

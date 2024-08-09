@@ -15,3 +15,6 @@ class Product(models.Model):
     product_price = models.DecimalField(max_digits=10, decimal_places=2)
     product_height = models.DecimalField(max_digits=6, decimal_places=2)
     product_width = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self) -> str:
+        return self.product_name
