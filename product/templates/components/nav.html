@@ -60,13 +60,13 @@
     </div>
 </div>
 </div>
-<div class="overflow-auto">
+<div class="overflow-auto scroll-container">
     <ul class="nav nav-tabs nav-category d-flex flex-nowrap">
         {% for category in categories %}
             <li class="nav-item">
-                <form method="get" action="{% url "products:list" %}" class="nav-link text-white category-form">
-                    <input type="hidden" name="category" value={{ category }}>
-                    {{category|title}}
+                <form method="get" action="{% url 'products:list' %}" class="nav-link text-white category-form">
+                    <input type="hidden" name="category" value="{{ category }}">
+                    {{ category|title }}
                 </form>
             </li>
         {% endfor %}
