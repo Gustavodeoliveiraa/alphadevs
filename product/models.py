@@ -4,9 +4,6 @@ from category.models import Category
 
 class Product(models.Model):
     product_name = models.CharField(max_length=255, blank=False, null=False)
-    product_image = models.ImageField(
-        upload_to='product_image', blank=False, null=False
-    )
     product_description = models.TextField(blank=False, null=False)
     product_category = models.ForeignKey(
         to=Category, on_delete=models.CASCADE, related_name='pd_category'
@@ -18,3 +15,13 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.product_name
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(
+        to=Product, on_delete=models.CASCADE, related_name='images'
+    )
+
+    images = models.ImageField(
+        upload_to='product_image', blank=False, null=False
+    )

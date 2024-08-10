@@ -174,8 +174,17 @@ a {
 
 
 .container-detail-product {
-    height: 400px;
+    height: 300px;
     width: 95%;
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--color-text-gray);
+    border: 2px solid var(--color-text-gray);
+    border-radius: 50%;
+    padding: 10px;
 }
 
 .info-products h2,
