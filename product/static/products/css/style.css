@@ -160,17 +160,19 @@ a {
 
 
 /* detail page */
-.bi-cart-fill {
+.cart-button {
     color: var(--color-text-gray);
     right: 0;
-    bottom: 2px;
+    bottom: 4px;
     transition: transform 0.1s ease-in;
 }
 
-.bi-cart-fill:hover {
+.cart-button:hover {
     cursor: pointer;
     transform: scale(1.05);
 }
+
+
 .container-detail-product {
     height: 400px;
     width: 95%;
@@ -229,6 +231,15 @@ a {
         grid-template-columns: repeat(3, minmax(220px, auto));
         gap: 1.5vw;
     }
+
+    .purchase {
+        border-radius: 0.25rem !important;
+    }
+
+    .cart-button-tablet {
+        background-color: var(--bg-color-price);
+    }
+     
 }
 
 

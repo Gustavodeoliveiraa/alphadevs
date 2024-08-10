@@ -7,20 +7,26 @@
             <img class="w-100 h-100" src="{{object.product_image.url}}" alt="">
         </div>
 
-        <div class="container info-products w-100 d-flex justify-content-between mt-5">
+        <div class="container info-products w-100  d-flex justify-content-between mt-5 ps-md-5 pe-md-5 ">
             <h2 class="" >Largura: {{object.product_width}}</h2>
             <h2 class="">Altura: {{object.product_height}}</h2>
+            <h2 class="d-none d-md-block">R$: {{object.product_price}}</h2>
         </div>
-        <div class="container container-purchase mt-4 text-white">
-            <div class="all d-flex w-100 d-flex justify-content-center position-relative">
+        <div class="container container-purchase mt-4 text-white ">
+            <div class="all d-flex w-100 d-flex justify-content-center position-relative justify-content-md-between ro">
                 <div class="purchase p-2">
                     <p>Comprar</p>
                 </div>
-                <div class="price d-flex align-items-center justify-content-center p-2">
+                <div class="price d-flex align-items-center justify-content-center p-2 d-md-none">
                     R$: {{object.product_price}}
                 </div>
 
-                <a href=""><i class="bi bi-cart-fill position-absolute fs-2" title="Adicionar ao Carrinho"></i></a>
+                <div class="purchase p-2 d-none d-md-flex rounded justify-content-center align-items-center cart-button-tablet">
+                  
+                    <p>Adicioonar ao carrinho</p>
+                </div>
+
+                <a href="" class="d-md-none"><i class="bi bi-cart-fill cart-button position-absolute fs-2 " title="Adicionar ao Carrinho"></i></a>
             </div>
         </div>
     </div>
