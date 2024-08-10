@@ -82,6 +82,10 @@ a {
     display: none;
 }
 
+.hover-category:hover {
+    cursor: pointer;
+}
+
 .label_search {
     display: flex;
     align-items: center;
@@ -156,6 +160,17 @@ a {
 
 
 /* detail page */
+.bi-cart-fill {
+    color: var(--color-text-gray);
+    right: 0;
+    bottom: 2px;
+    transition: transform 0.1s ease-in;
+}
+
+.bi-cart-fill:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
 .container-detail-product {
     height: 400px;
     width: 95%;
