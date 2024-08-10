@@ -108,7 +108,7 @@ a {
 
 .container-products {
     display: grid;
-    grid-template-columns: repeat(2, minmax(50px, auto));
+    grid-template-columns: repeat(2, minmax(50px, 1fr));
     gap: 5px;
 }
 
