@@ -172,13 +172,23 @@ a {
     transform: scale(1.05);
 }
 
-
+/* delete */
 .container-detail-product {
     height: 300px;
     width: 95%;
 }
 
+.carousel-inner {
+    height: 450px;
+}
 
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    object-fit: fill;
+}
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: var(--color-text-gray);
@@ -262,6 +272,10 @@ a {
     .input-search {
         width: 50% !important;
     }
+
+    .carousel-inner {
+        height: 500px;
+    }
 }
 
 
@@ -274,6 +288,10 @@ a {
 
     .cover-product {
         height: 250px;
+    }
+
+    .carousel-inner {
+        height: 550px;
     }
 }
 
