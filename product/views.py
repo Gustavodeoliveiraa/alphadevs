@@ -26,7 +26,7 @@ class Home(generic.ListView):
             queryset = Product.objects.filter(
                 product_category__name__icontains=category
             )
-        return queryset
+        return queryset.order_by('-product_release_date')
 
 
 class DetailProduct(generic.DetailView):
