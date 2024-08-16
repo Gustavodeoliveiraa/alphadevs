@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block nav %}
+    {% include "components/nav.html" %}
+    {% include "components/search_input.html" %}
+{% endblock nav %}
+
 {% block content %}
     <div class="container mt-4 text-center">
         <h1 class="display-3">{{object.product_name}}</h1>

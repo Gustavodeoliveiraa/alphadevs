@@ -13,8 +13,9 @@
     <title>AlphaDevs 3D</title>
 </head>
 <body>
-    {% include "components/nav.html" %}
-    {% include "components/search_input.html" %}
+    {% block nav %}
+
+    {% endblock nav %}
     <div class="h-100">
         {% block content %}
     
