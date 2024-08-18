@@ -3,12 +3,18 @@ from django.urls import reverse_lazy
 from django.views import generic
 from account.forms import FormUserCreation
 from django.contrib.auth.views import LoginView
+from product.models import Category
 
 
 class CreateUserView(generic.CreateView):
     form_class = FormUserCreation
     template_name = 'components/register.html'
     success_url = reverse_lazy('products:list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        return context
 
     def form_valid(self, form):
         print('form validado')

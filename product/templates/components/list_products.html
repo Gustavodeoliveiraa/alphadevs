@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block nav %}
+    {% include "components/nav.html" %}
+    {% include "components/search_input.html" %}
+{% endblock nav %}
+
 {% block content %}
     {% if product_list %}
         <div class="container mt-3 container-products justify-content-center">

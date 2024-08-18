@@ -1,6 +1,6 @@
 {% load static %}
 <div class="w-100 h-75 nav-container d-flex justify-content-between position-relative ">
-    <div class=" ms-4 d-flex justify-content-start align-items-center w-75">
+    <div class=" ms-4 d-flex justify-content-start align-items-center w-75 d-xxl-none">
 
         <div class="logo rounded"><a href={% url "products:list" %} class="w-100 h-100 d-flex"></a></div>
         <div class="d-flex flex-column text-white ms-2 text-center fs-4">
@@ -8,7 +8,17 @@
             <p>3D</p>
         </div>
     </div>
-    <div class="d-flex justify-content-center align-items-center pe-3">
+
+    <div class="justify-content-center align-items-center w-100 d-none d-xxl-flex">
+
+        <div class="logo rounded"><a href={% url "products:list" %} class="w-100 h-100 d-flex"></a></div>
+        <div class="d-flex flex-column text-white ms-2 text-center fs-4">
+            <p>AlphaDevs 3D</p>
+        </div>
+    </div>
+
+    
+    <div class="d-flex justify-content-center align-items-center pe-3 d-xxl-none">
         <div class="nav">
             <i class="bi bi-list rem-4 text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
     
@@ -60,8 +70,8 @@
     </div>
 </div>
 </div>
-<div class="overflow-auto scroll-container">
-    <ul class="nav nav-tabs nav-category d-flex flex-nowrap">
+<div class="overflow-auto overflow-visible">
+    <ul class="nav nav-tabs nav-category d-flex flex-nowrap justify-content-xxl-center align-items-center">
         {% for category in categories %}
             <li class="nav-item hover-category">
                 <form method="get" action="{% url 'products:list' %}" class="nav-link text-white category-form">
@@ -70,6 +80,15 @@
                 </form>
             </li>
         {% endfor %}
+        <div class="btn-group dropend d-none d-xxl-flex position-absolute">
+            <button type="button" class="btn text-white dropdown-toggle m-0 p-0 b-0 d-flex align-item-center justify-content-center fs-3 mb-1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle "></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url "account:register" %}">Registrar-se</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{% url "account:login" %}">Entrar</a></li>
+            </ul>
+          </div>
     </ul>
 </div>
 
