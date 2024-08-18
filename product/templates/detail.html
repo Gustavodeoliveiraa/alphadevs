@@ -6,22 +6,19 @@
 {% endblock nav %}
 
 {% block content %}
-    <div class="container mt-4 text-center">
-        <h1 class="display-3">{{object.product_name}}</h1>
+    <div class="container-fluid container-detail-descktop mt-4 text-center d-xxl-flex ">
+        <h1 class="display-3 d-xxl-none">{{object.product_name}}</h1>
 
         <div id="carouselExampleIndicators" class="carousel slide mt-4 rounded" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
+
+            <div class="carousel-inner mt-xxl-4 mb-xxl-4">
                 {% for image in object.images.all %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{{image.images.url}}" class="d-block w-100 h-100 cover_product" alt="{{object.product_name}}">
+                        <img src="{{image.images.url}}" class="d-block w-100 h-100 cover_product rounded-3" alt="{{object.product_name}}">
                     </div>
                 {% endfor %}
             </div>
+            
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -31,14 +28,74 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        
 
-        <div class="container info-products w-100  d-flex justify-content-between mt-5 ps-md-5 pe-md-5 ">
+        {% comment %} Descktop Version {% endcomment %}
+
+        <div class="infos w-100 mt-4 ms-4">
+            <h1 class="display-4 d-none d-xxl-block mt-4">{{object.product_name}}</h1>
+            
+            <div class="container d-none d-xxl-flex position-relative">
+
+                <div class="container description-pc w-50 mt-4 mb-4 d-none d-xxl-flex flex-column">
+                    <h4 class="mt-3 mb-3 d-flex w-100" >Descrição</h4>
+                    <div class="container d-flex w-100 text-start p-0">
+                        <p>{{object.product_description}}</p>
+                    </div>
+                </div>
+
+                <div class="infos-pc w-50 mt-4 ms-4 position-relative">
+                    <h4 class="mt-4 mb-4">Características</h4>
+                    <div class="container d-none d-xxl-flex flex-xxl-column justify-content-start ms-4 ">
+                        <div class="w-100 fs-3 text-start" >
+                            <p>Largura: {{object.product_width}} cm</p>
+                        </div>
+                        <div class="w-100 fs-3 text-start">
+                            <p>Altura: {{object.product_height}}</p>
+                        </div>
+                        <div class="w-100 fs-3 text-start">
+                            <p>R$: {{object.product_price}}</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="container container-purchase  text-white d-none d-xxl-flex h-50 align-items-end">
+
+                        <div class="all d-flex w-100 d-flex flex-column ">
+                            <div class="purchase p-2 mb-2 d-flex align-items-center
+                            justify-content-center">
+                                <i class="bi bi-cash mb-1 me-1"></i>
+                                <p>Comprar</p>
+                            </div>
+                            <div class="price d-flex align-items-center justify-content-center p-2 d-md-none ">
+                                R$: {{object.product_price}}
+                            </div>
+            
+                            <div class="purchase p-2 d-none d-md-flex rounded justify-content-center align-items-center cart-button-tablet d-flex align-items-center
+                            justify-content-center">
+                                <i class="bi bi-cart-check-fill mb-1 me-1"></i>
+                                <p>Adicioonar ao carrinho</p>
+                            </div>
+            
+                            <a href="" class="d-md-none"><i class="bi bi-cart-fill cart-button position-absolute fs-2 " title="Adicionar ao Carrinho "></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% comment %} Descktop Version {% endcomment %}
+
+        
+        <div class="container info-products w-100  d-flex justify-content-between mt-5 ps-md-5 pe-md-5 d-block d-xxl-none">
             <h2 class="" >Largura: {{object.product_width}}</h2>
             <h2 class="">Altura: {{object.product_height}}</h2>
             <h2 class="d-none d-md-block">R$: {{object.product_price}}</h2>
         </div>
-        <div class="container container-purchase mt-4 text-white ">
+
+        <div class="container container-purchase mt-4 text-white d-xxl-none">
+
             <div class="all d-flex w-100 d-flex justify-content-center position-relative justify-content-md-between ro">
                 <div class="purchase p-2">
                     <p>Comprar</p>
@@ -56,7 +113,8 @@
             </div>
         </div>
     </div>
-    <div class="container description mt-4 mb-4">
+
+    <div class="container description mt-4 mb-4 d-block d-xxl-none">
         <h4 class="mt-3 mb-3" >Descrição</h4>
         <div class="container">
             <p>{{object.product_description}}</p>

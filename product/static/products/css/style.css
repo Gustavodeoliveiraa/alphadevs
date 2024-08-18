@@ -269,7 +269,7 @@ a {
     }
 
     .input-search {
-        width: 50% !important;
+        width: 70% !important;
     }
 
     .carousel-inner {
@@ -319,6 +319,33 @@ a {
         border: none !important;
     }
     /* nav */
+
+    /* detail */
+
+
+    .container-detail-descktop {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        width: 95% !important;
+    }
+
+    .carousel-inner {
+        width: 600px !important;
+    }
+
+    .cover_product {
+        width: 600px !important;
+    }
+    
+    .description-pc {
+        border: none;
+    }
+
+    .infos-pc {
+        border-left: 1px solid black;
+    }
+
+    /* detail */
 
 }
 
