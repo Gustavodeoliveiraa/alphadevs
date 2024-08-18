@@ -327,6 +327,7 @@ a {
         border-top: 1px solid black;
         border-bottom: 1px solid black;
         width: 95% !important;
+        overflow: hidden;
     }
 
     .carousel-inner {
