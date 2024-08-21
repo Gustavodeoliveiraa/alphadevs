@@ -36,6 +36,17 @@ a {
     position: relative;
 }
 
+.bg-gray {
+    height: 44px;
+    top: 140px;
+    background-color: var(--color-category);
+    z-index: -1;
+}
+
+.shadow-category {
+    box-shadow: 1px 1px 4px 0px black;
+}
+
 .logo {
     background-image: url('../images/novo_logo.jpeg');
     width: 95px;
@@ -75,6 +86,7 @@ a {
     scrollbar-width: auto;
     overflow: scroll; 
     white-space: nowrap;
+    border-bottom: 0;
 }
 
 .nav-category::-webkit-scrollbar {
@@ -310,13 +322,41 @@ a {
 @media (min-width: 1400px) {
     
     /* nav PC */
+    
+
+    .container-category {
+        background-color: var(--color-category);
+        overflow-y: visible;
+    }
+
+    .nav-category {
+        margin-right: 115px !important;
+        height: 44px !important;
+
+    }
+
+    .log-and-cart-pc {
+        background-color: var(--color-category);
+    }
 
     .dropend {
-        margin-left: 510px;
+        right: 0;
+    }
+
+    .dropdown {
+    }
+    .dropdown-toggle  {
+        border: 0;
+        margin: 0 !important;
+        
     }
 
     .dropdown-toggle::after {
         border: none !important;
+    }
+    
+    .bi-cart-fill {
+        cursor: pointer;
     }
     /* nav */
 
