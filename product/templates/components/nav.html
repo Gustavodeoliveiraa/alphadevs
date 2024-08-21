@@ -70,8 +70,13 @@
     </div>
 </div>
 </div>
-<div class="overflow-auto overflow-visible">
-    <ul class="nav nav-tabs nav-category d-flex flex-nowrap justify-content-xxl-center align-items-center">
+
+<div class="bg-gray position-fixed w-100">
+    {% comment %} just the gray background for div of categories {% endcomment %}
+</div>
+
+<div class="overflow-auto overflow-visible text-white shadow-category">
+    <ul class="nav nav-tabs nav-category d-flex flex-nowrap justify-content-xxl-center align-items-center text-white pe-2">
         {% for category in categories %}
             <li class="nav-item hover-category">
                 <form method="get" action="{% url 'products:list' %}" class="nav-link text-white category-form">
@@ -80,15 +85,27 @@
                 </form>
             </li>
         {% endfor %}
-        <div class="btn-group dropend d-none d-xxl-flex position-absolute">
-            <button type="button" class="btn text-white dropdown-toggle m-0 p-0 b-0 d-flex align-item-center justify-content-center fs-3 mb-1" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle "></i>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url "account:register" %}">Registrar-se</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{% url "account:login" %}">Entrar</a></li>
-            </ul>
-          </div>
+        <div class="btn-group dropend d-none d-xxl-flex position-fixed log-and-cart-pc m-0  ps-4 pe-4 pb-0 pt-0 justify-content-center align-item-center gap-2">
+            {% if not user.is_authenticated %}
+
+                <button type="button" class="btn text-white dropdown-toggle m-0 p-0 b-0 d-flex align-item-center justify-content-center fs-3 mb-1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle "></i>
+                </button>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url "account:register" %}">Registrar-se</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{% url "account:login" %}">Entrar</a></li>
+                </ul>
+            {% else %}
+                <button type="button" class="btn text-white dropdown-toggle m-0 p-0 b-0 d-flex align-item-center justify-content-center fs-3 mb-1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle "></i>
+                </button>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="">Sair</a></li>
+                </ul>
+            {% endif %}
+            <a href="" class="text-white"><i class="bi bi-cart-fill fs-3"></i></a>
+
+        </div>
     </ul>
 </div>
 
