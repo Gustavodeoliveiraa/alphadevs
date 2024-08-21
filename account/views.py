@@ -4,6 +4,7 @@ from django.views import generic
 from account.forms import FormUserCreation
 from django.contrib.auth.views import LoginView
 from product.models import Category
+from django.contrib.auth import logout
 
 
 class CreateUserView(generic.CreateView):
@@ -38,3 +39,8 @@ class LoginUserView(LoginView):
         super().form_invalid(form)
         print('Login ou Senha ERRADAS')
         return redirect('products:list')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('products:list')
