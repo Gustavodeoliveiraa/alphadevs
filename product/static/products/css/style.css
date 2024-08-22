@@ -329,27 +329,11 @@ a {
         overflow-y: visible;
     }
 
-    .nav-category {
-        margin-right: 115px !important;
-        height: 44px !important;
-
-    }
-
     .log-and-cart-pc {
         background-color: var(--color-category);
+        width: fit-content;
     }
 
-    .dropend {
-        right: 0;
-    }
-
-    .dropdown {
-    }
-    .dropdown-toggle  {
-        border: 0;
-        margin: 0 !important;
-        
-    }
 
     .dropdown-toggle::after {
         border: none !important;
