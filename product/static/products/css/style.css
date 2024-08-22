@@ -87,7 +87,7 @@ a {
     overflow: scroll; 
     white-space: nowrap;
     border-bottom: 0;
-    width: 94%;
+    width: 100%;
 }
 
 .nav-category::-webkit-scrollbar {
@@ -330,6 +330,10 @@ a {
         overflow-y: visible;
     }
 
+    .nav-category {
+        width: 94%;
+    }
+    
     .log-and-cart-pc {
         background-color: var(--color-category);
         width: fit-content;
