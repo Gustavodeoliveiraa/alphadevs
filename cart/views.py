@@ -10,7 +10,6 @@ class AddToCartView(LoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         product_id = self.request.POST.get('id_product')
         product = get_object_or_404(Product, id=product_id)
-        user = self.request.user
 
         user_cart = Cart.objects.get(user=self.request.user)
 
