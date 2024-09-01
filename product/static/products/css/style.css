@@ -248,6 +248,14 @@ a {
 }
 
 
+/* shopCart */
+.cover-image img{
+    height: 100px;
+    width: 100px;
+}
+
+/* End shopCart */
+
 @media (min-width: 619px) {
 
     .container-products {

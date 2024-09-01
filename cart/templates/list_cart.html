@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    {% include "components/nav.html" %}
+    {% include "components/search_input.html" %}
+{% endblock nav %}
+
+{% block content %}
+    <div class="container-fluid text-center ">
+        <h1 class="display-4 pt-4 pb-4">Meu Carrinho</h1>
+    </div>
+
+    {% for carItem in cart %}
+        <div class="conteiner border d-flex mb-3">
+            <div class="cover-image">
+                <img src="{{carItem.product.images.first.images.url}}" alt="">
+                <p>Product ID: {{ carItem.product.pk }}</p>
+
+            </div>
+            <div class="list-infos">
+                <p>{{carItem.product.product_name}}</p>
+                <p>Quantidade {{carItem.quantity}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

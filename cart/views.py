@@ -1,9 +1,12 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.views import View
 from .models import Product, Cart, CartItem
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.list import ListView
 
 
 class AddToCartView(LoginRequiredMixin, View):
@@ -31,4 +34,18 @@ class AddToCartView(LoginRequiredMixin, View):
                 f"Erro ao adicionar o produto ao carrinho: {str(e)}"
             )
 
-        return redirect(reverse('products:detail', args=[product_id]))
+        return redirect(reverse_lazy('products:detail', args=[product_id]))
+
+
+class CartListView(ListView):
+    model = Cart
+    context_object_name = 'cart'
+    template_name = 'list_cart.html'
+
+    def get_queryset(self):
+        query = super().get_queryset()
+        query = CartItem.objects.filter(
+            cart__user=self.request.user
+        ).order_by('-id').select_related('product', 'cart')
+
+        return query
