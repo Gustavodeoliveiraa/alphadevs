@@ -37,7 +37,7 @@ class AddToCartView(LoginRequiredMixin, View):
         return redirect(reverse_lazy('products:detail', args=[product_id]))
 
 
-class CartListView(ListView):
+class CartListView(LoginRequiredMixin, ListView):
     model = Cart
     context_object_name = 'cart'
     template_name = 'list_cart.html'

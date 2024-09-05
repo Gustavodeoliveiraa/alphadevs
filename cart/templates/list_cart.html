@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block nav %}
     {% include "components/nav.html" %}
@@ -6,20 +7,25 @@
 {% endblock nav %}
 
 {% block content %}
-    <div class="container-fluid text-center ">
+    <div class="container-fluid text-center">
         <h1 class="display-4 pt-4 pb-4">Meu Carrinho</h1>
     </div>
 
     {% for carItem in cart %}
-        <div class="conteiner border d-flex mb-3">
-            <div class="cover-image">
-                <img src="{{carItem.product.images.first.images.url}}" alt="">
-                <p>Product ID: {{ carItem.product.pk }}</p>
-
-            </div>
-            <div class="list-infos">
-                <p>{{carItem.product.product_name}}</p>
-                <p>Quantidade {{carItem.quantity}}</p>
+        <div class="center-content d-flex justify-content-lg-center w-100">
+            <div class="conteiner container-shopcart w-100 d-flex mb-3 m-2 align-items-center overflow-hidden p-2">
+                <div class="cover-image border rounded-3 me-4">
+                    <img src="{{carItem.product.images.first.images.url}}" alt="">
+                </div>
+                <div class="list-infos w-100 h-100 pl-4 d-flex flex-column justify-content-center">
+                    <h2>{{carItem.product.product_name}}</h2>
+                    <p class="h5 border-infos-cart-shop mb-4">R$ {{carItem.product.product_price}}</p>
+                    <div class="d-flex align-items-center">
+                        <p class="h6 m-0 me-md-4">Quantidade {{carItem.quantity}}</p>
+                        <a href=""><button type="button" class="btn btn-outline-secondary ms-3 ps-3 pe-3">Excluir</button></a>
+                    </div>
+                </div>
+            
             </div>
         </div>
     {% endfor %}

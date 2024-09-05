@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'account',
 ]
 
-LOGIN_URL = 'login'
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
