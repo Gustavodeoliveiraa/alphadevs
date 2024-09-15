@@ -5,5 +5,6 @@ from cart.models import Cart
 
 
 @receiver(post_save, sender=User)
-def create_my_cart(sender, instance, *args, **kwargs):
-    Cart.objects.create(user=instance)
+def create_my_cart(sender, instance, created, *args, **kwargs):
+    if created:
+        Cart.objects.create(user=instance)
