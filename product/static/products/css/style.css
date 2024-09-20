@@ -239,6 +239,7 @@ a {
 }
 
 
+ add_at_cart
 /* shopCart */
 
 .container-shopcart {
@@ -263,6 +264,20 @@ a {
 }
 
 /* End shopCart */
+=======
+/* cart */
+
+.container-product-cart {
+    border: 1px solid black;
+    height: 230px;
+}
+
+.text-mycart {
+    margin: 50px 0px 50px 0px;
+}
+
+/* cart */
+
 
 @media (min-width: 619px) {
 
