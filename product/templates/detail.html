@@ -6,14 +6,6 @@
 {% endblock nav %}
 
 {% block content %}
-    {% if messages %}
-        <div class="alert alert alert-success text-center ">
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
-
     <div class="container-fluid container-detail-descktop mt-4 text-center d-xxl-flex position-relative">
         <h1 class="display-3 d-xxl-none">{{object.product_name}}</h1>
 

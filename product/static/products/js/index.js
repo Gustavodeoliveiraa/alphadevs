@@ -32,3 +32,35 @@ modalElement.addEventListener('show.bs.modal', function () {
         offcanvas.hide();
     }
 });
+
+
+// sending the form for delete an produto of Cart Shop
+// var deleteButton = document.querySelectorAll('.button-delete-product')
+// var formDelete = document.getElementById('form-delete')
+
+
+// deleteButton.forEach((buttons)=>{
+//     buttons.addEventListener('click', (event)=>{
+//         event.preventDefault()
+        
+//         // get the correctly id of form  associated at the button clicked
+//         var formId = buttons.getAttribute('data-form-id')
+//         var formDelete = document.getElementById(formId)
+//         formDelete.submit()
+        
+//     })
+// })
+
+var confirmButtons = document.querySelectorAll('.button-delete-product');
+
+confirmButtons.forEach((button) => {
+    button.addEventListener('click', (event)=>{
+        console.log(event.currentTarget);
+        var formId = event.currentTarget.getAttribute('form-id');
+        var form = document.getElementById(formId)
+        form.submit()
+        
+    })
+})
+
+
