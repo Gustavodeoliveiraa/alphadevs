@@ -26,7 +26,7 @@
             <div class="d-flex align-items-center justify-content-center">
                 <p class="display-6 pt-4 pb-4 me-3">R$ {{total|floatformat:2}}</p>
                 {% if cart|length > 0 %}
-                    <button type="button" class="btn btn-warning buy-button">Fechar Pedido</button>
+                    <a href=" {% url "send_email" %} "><button type="button" class="btn btn-warning buy-button">Fechar Pedido</button></a>
                 {% endif %}
             </div>
         </div>
