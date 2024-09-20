@@ -458,7 +458,7 @@ a {
     }
 
     .scroll-description {
-        min-height: 35%;
+        height: 40%;
         overflow-y: scroll;
         overflow-x: hidden;
 

@@ -1,3 +1,5 @@
+from django.http import HttpRequest, HttpResponse
+
 
 from django.views import View
 from .models import Product, Cart, CartItem
@@ -6,6 +8,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
+from django.views.generic import DeleteView
 from django.db.models import Sum, F
 
 
@@ -24,9 +27,9 @@ class AddToCartView(LoginRequiredMixin, View):
             if not created:
                 cart_item.quantity += 1
                 cart_item.save()
-                messages.success(
-                    self.request, "Produto adicionado ao carrinho com sucesso!"
-                )
+            messages.success(
+                self.request, "Produto adicionado ao carrinho com sucesso!",
+            )
 
         except Exception as e:
             messages.success(
@@ -34,7 +37,7 @@ class AddToCartView(LoginRequiredMixin, View):
                 f"Erro ao adicionar o produto ao carrinho: {str(e)}"
             )
 
-        return redirect(reverse_lazy('products:detail', args=[product_id]))
+        return redirect(reverse_lazy('cart_list'))
 
 
 class CartListView(LoginRequiredMixin, ListView):
@@ -74,3 +77,16 @@ class ListCartView(ListView):
         context['categories'] = Category.objects.all()
 
         return context
+
+
+class CartDeleteView(LoginRequiredMixin, DeleteView):
+    model = CartItem
+    success_url = reverse_lazy('cart_list')
+
+    def post(self, request, *args, **kwargs):
+        cart_item = self.get_object()
+        messages.error(
+            self.request,
+            f'Produto "{cart_item.product.product_name}" Removido com sucesso'
+        )
+        return super().post(request, *args, **kwargs)

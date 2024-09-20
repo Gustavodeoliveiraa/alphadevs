@@ -7,6 +7,19 @@
 {% endblock nav %}
 
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success text-center ">
+            {% elif message.tags == 'error' %}
+                <div class="alert alert-danger text-center ">
+            {% endif %}
+            
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <div class="container-fluid">
         <div class="container-fluid text-center text-xxl-start padding-my-cart d-block  d-xxl-flex justify-content-between align-items-center">
             <h1 class="display-4 pt-4 pb-4">Meu Carrinho</h1>
@@ -32,7 +45,7 @@
                     <p class="h5 border-infos-cart-shop mb-4">R$ {{carItem.product.product_price}}</p>
                     <div class="d-flex align-items-center">
                         <p class="h6 m-0 me-md-4">Quantidade {{carItem.quantity}}</p>
-                        <a href=""><button type="button" class="btn btn-outline-secondary ms-3 ps-3 pe-3">Excluir</button></a>
+                        <button type="button" class="btn btn-outline-secondary ms-3 ps-3 pe-3" data-bs-toggle="modal" data-bs-target="#modalDeleteItem{{ carItem.pk }}">Excluir</button>
                     </div>
                 </div>
 
@@ -56,11 +69,32 @@
                     
                     </div>
                     <div class="delete-item-pc h-50 d-flex">
-                        <a href="" class="align-self-end"><button type="button" class="btn btn-outline-secondary ms-3 ps-3 pe-3">Excluir</button></a> 
+                        <button type="button" class="btn btn-outline-secondary ms-3 ps-3 pe-3 align-self-end " data-bs-toggle="modal" data-bs-target="#modalDeleteItem{{ carItem.pk }}">Excluir</button>
                     </div>
                 </div>
-            
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalDeleteItem{{ carItem.pk }}" tabindex="-1" aria-labelledby="modalDeleteItem{{ carItem.pk }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form action="{% url "cart_delete" carItem.pk%}" method="post" id="form-delete{{ carItem.pk }}">
+                        {% csrf_token %}
+                        <p>Deseja deletear o produto:  <strong>"{{ carItem.product.product_name }}"</strong> </p>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" form-id="form-delete{{ carItem.pk }}" id="button-delete-product" class="btn btn-primary button-delete-product">Confirmar</button>
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
+
+
 {% endblock content %}
