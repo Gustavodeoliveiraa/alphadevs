@@ -9,4 +9,5 @@ urlpatterns = [
         views.CartDeleteView.as_view(),
         name='cart_delete'
     ),
+    path('send_mail', views.ProcessEmail.as_view(), name='send_email')
 ]
