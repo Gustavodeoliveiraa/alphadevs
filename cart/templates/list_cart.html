@@ -75,6 +75,26 @@
             </div>
         </div>
 
+        <div class="modal fade" id="modalDeleteItem{{ carItem.pk }}" tabindex="-1" aria-labelledby="modalDeleteItem{{ carItem.pk }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form action="{% url "cart_delete" carItem.pk%}" method="post" id="form-delete{{ carItem.pk }}">
+                        {% csrf_token %}
+                        <p>Deseja deletear o produto:  <strong>"{{ carItem.product.product_name }}"</strong> </p>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" form-id="form-delete{{ carItem.pk }}" id="button-delete-product" class="btn btn-primary button-delete-product">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
 
 {% endblock content %}

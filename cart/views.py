@@ -39,7 +39,28 @@ class AddToCartView(LoginRequiredMixin, View):
         return redirect(reverse_lazy('cart_list'))
 
 
+class CartListView(LoginRequiredMixin, ListView):
+    model = Cart
+    context_object_name = 'cart'
+    template_name = 'list_cart.html'
 
+    def get_queryset(self):
+        query = super().get_queryset()
+        query = CartItem.objects.filter(
+            cart__user=self.request.user
+        ).order_by('-id').select_related('product', 'cart')
+
+        return query
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['total'] = CartItem.objects.filter(
+            cart__user=self.request.user
+        ).aggregate(
+            total=Sum(F('quantity') * F('product__product_price'))
+        )['total'] or float(0)
+        return context
 
 
 class CartDeleteView(LoginRequiredMixin, DeleteView):
