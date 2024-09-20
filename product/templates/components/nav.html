@@ -43,7 +43,7 @@
                         </a>
                     </div>
                     <div class="container m-2">
-                        <a href="">
+                        <a href="{% url "cart_list" %}">
                             <i class="bi bi-cart3 fs-1">
                                 <p class="inline-flex  ps-2 fs-2">Carrinho</p>
                             </i>
@@ -109,7 +109,7 @@
             </li>
             </ul>
         {% endif %}
-        <a href="" class="text-white"><i class="bi bi-cart-fill fs-3"></i></a>
+        <a href="{% url "cart_list" %}" class="text-white"><i class="bi bi-cart-fill fs-3"></i></a>
 
     </div>
 </div>

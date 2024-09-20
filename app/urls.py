@@ -5,7 +5,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('cart.urls')),
     # path('', include('category.urls')),
     path('', include('product.urls')),
     path('', include('account.urls')),

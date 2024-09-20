@@ -6,6 +6,14 @@
 {% endblock nav %}
 
 {% block content %}
+    {% if messages %}
+        <div class="alert alert alert-success text-center ">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <div class="container-fluid container-detail-descktop mt-4 text-center d-xxl-flex position-relative">
         <h1 class="display-3 d-xxl-none">{{object.product_name}}</h1>
 
@@ -70,13 +78,15 @@
                                 R$: {{object.product_price}}
                             </div>
             
-                            <div class="purchase p-2 d-none d-md-flex rounded justify-content-center align-items-center cart-button-tablet d-flex align-items-center
-                            justify-content-center">
+                            <div class="purchase p-2 d-none d-md-flex rounded justify-content-center align-items-center cart-button-tablet d-flex align-items-center" onclick="document.getElementById('cart-form').submit();">
+                                <form id="cart-form" action="{% url 'mycart' %}" method="post" class="d-none">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="id_product" value="{{ object.pk }}">
+                                    <!-- Adicione outros campos necessários para o formulário -->
+                                </form>
                                 <i class="bi bi-cart-check-fill mb-1 me-1"></i>
-                                <p>Adicioonar ao carrinho</p>
+                                <p>Adicionar ao carrinho</p>
                             </div>
-            
-                            <a href="" class="d-md-none"><i class="bi bi-cart-fill cart-button position-absolute fs-2 " title="Adicionar ao Carrinho "></i></a>
                         </div>
                     </div>
 
@@ -85,7 +95,7 @@
 
         </div>
 
-        {% comment %} Descktop Version {% endcomment %}
+        {% comment %} End Descktop Version {% endcomment %}
 
         
         <div class="container info-products w-100  d-flex justify-content-between mt-5 ps-md-5 pe-md-5 d-block d-xxl-none">
@@ -109,7 +119,14 @@
                     <p>Adicioonar ao carrinho</p>
                 </div>
 
-                <a href="" class="d-md-none"><i class="bi bi-cart-fill cart-button position-absolute fs-2 " title="Adicionar ao Carrinho"></i></a>
+                
+                <form action="{% url 'mycart' %}" method="post">
+                    {% csrf_token %}
+                    <input class="d-none" value={{object.pk}} type="text" name="id_product" id="id_product">
+                    <button type="submit" class="btn btn-link p-0">
+                        <i class="bi bi-cart-fill cart-button position-absolute fs-2" title="Adicionar ao Carrinho"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
