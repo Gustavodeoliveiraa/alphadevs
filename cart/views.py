@@ -1,13 +1,15 @@
 from django.http import HttpRequest, HttpResponse
 from django.views import View
 from .models import Product, Cart, CartItem
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DeleteView
 from django.db.models import Sum, F
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 
 
 class AddToCartView(LoginRequiredMixin, View):
@@ -73,3 +75,33 @@ class CartDeleteView(LoginRequiredMixin, DeleteView):
             f'Produto "{cart_item.product.product_name}" Removido com sucesso'
         )
         return super().post(request, *args, **kwargs)
+
+
+class ProcessEmail(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+
+        user = User.objects.get(id=self.request.user.pk)
+
+        products = CartItem.objects.filter(
+            cart__user=self.request.user
+        ).select_related('product', 'cart')
+
+        items_link = list()
+
+        for link in products:
+            product_url = reverse('products:detail', args=[link.product.pk])
+            full_path = request.build_absolute_uri(product_url)
+            items_link.append(full_path)
+
+        message = (
+            f'Nome do suário: {user.username}\nEmail: {user.email}\n'
+            + '\n'.join(items_link)
+        )
+
+        send_mail(
+            'Tentativa de compra', message,
+            'devsalph@gmail.com', [user.email]
+        )
+
+        return redirect(reverse_lazy('cart_list'))
