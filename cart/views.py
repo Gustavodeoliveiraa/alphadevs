@@ -1,5 +1,3 @@
-
-
 from django.views.generic import ListView
 from django.views import View
 from django.core.mail import send_mail
@@ -10,7 +8,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DeleteView
 from django.db.models import Sum, F
-from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
 
@@ -105,6 +102,4 @@ class ProcessEmail(LoginRequiredMixin, View):
             'devsalph@gmail.com', [user.email]
         )
 
-
         return redirect(reverse_lazy('cart_list'))
-
