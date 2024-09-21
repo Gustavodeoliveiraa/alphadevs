@@ -74,7 +74,6 @@
                                 <form id="cart-form" action="{% url 'mycart' %}" method="post" class="d-none">
                                     {% csrf_token %}
                                     <input type="hidden" name="id_product" value="{{ object.pk }}">
-                                    <!-- Adicione outros campos necessários para o formulário -->
                                 </form>
                                 <i class="bi bi-cart-check-fill mb-1 me-1"></i>
                                 <p>Adicionar ao carrinho</p>

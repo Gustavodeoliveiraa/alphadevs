@@ -1,11 +1,13 @@
-from django.http import HttpRequest, HttpResponse
+
+
+from django.views.generic import ListView
 from django.views import View
+from django.core.mail import send_mail
 from .models import Product, Cart, CartItem
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.list import ListView
 from django.views.generic import DeleteView
 from django.db.models import Sum, F
 from django.core.mail import send_mail
@@ -61,7 +63,6 @@ class CartListView(LoginRequiredMixin, ListView):
         ).aggregate(
             total=Sum(F('quantity') * F('product__product_price'))
         )['total'] or float(0)
-        return context
 
 
 class CartDeleteView(LoginRequiredMixin, DeleteView):
@@ -104,4 +105,6 @@ class ProcessEmail(LoginRequiredMixin, View):
             'devsalph@gmail.com', [user.email]
         )
 
+
         return redirect(reverse_lazy('cart_list'))
+
