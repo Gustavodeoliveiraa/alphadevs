@@ -60,6 +60,8 @@ class CartListView(LoginRequiredMixin, ListView):
         ).aggregate(
             total=Sum(F('quantity') * F('product__product_price'))
         )['total'] or float(0)
+        
+        return context
 
 
 class CartDeleteView(LoginRequiredMixin, DeleteView):
