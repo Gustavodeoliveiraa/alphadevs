@@ -1,3 +1,4 @@
+import os
 from django.views.generic import ListView
 from django.views import View
 from django.core.mail import send_mail
@@ -92,16 +93,25 @@ class ProcessEmail(LoginRequiredMixin, View):
         for link in products:
             product_url = reverse('products:detail', args=[link.product.pk])
             full_path = request.build_absolute_uri(product_url)
-            items_link.append(full_path)
+            items_link.append(
+                f'Produto: {full_path}; Quantidade {link.quantity}'
+            )
+
+        total = CartItem.objects.filter(
+            cart__user=self.request.user
+        ).aggregate(
+            total=Sum(F('quantity') * F('product__product_price'))
+        )['total'] or float(0)
 
         message = (
             f'Nome do suário: {user.username}\nEmail: {user.email}\n'
             + '\n'.join(items_link)
+            + f'\nTotal do carrinho R$: {float(total):.2f}'
         )
 
         send_mail(
             'Tentativa de compra', message,
-            'devsalph@gmail.com', [user.email]
+            '', [os.environ.get('EMAIL_HOST_USER')]  # type: ignore
         )
 
         return redirect(reverse_lazy('cart_list'))
