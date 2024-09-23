@@ -1,5 +1,5 @@
 import os
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_delete
 from product.models import ProductImage
 from django.dispatch import receiver
 
@@ -23,3 +23,11 @@ def product_image_update(sender, instance, *args, **kwargs):
 
     except Exception:
         ...
+
+
+@receiver(post_delete, sender=ProductImage)
+def product_image_delete(sender, instance, *args, **kwargs):
+
+    delete_image(instance)
+    print(f'deletado imagem {instance.images.name}')
+
