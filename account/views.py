@@ -5,6 +5,7 @@ from account.forms import FormUserCreation
 from django.contrib.auth.views import LoginView
 from product.models import Category
 from django.contrib.auth import logout
+from django.contrib import messages
 
 
 class CreateUserView(generic.CreateView):
@@ -18,12 +19,11 @@ class CreateUserView(generic.CreateView):
         return context
 
     def form_valid(self, form):
-        print('form validado')
+        messages.success(self.request, 'Cadastro concluído com sucesso')
         return super().form_valid(form)
 
     def form_invalid(self, form):
         response = super().form_invalid(form)
-        print('form invalido')
         return response
 
 
