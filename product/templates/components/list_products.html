@@ -6,6 +6,15 @@
 {% endblock nav %}
 
 {% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{message.tags}} text-center container-fluid">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     {% if product_list %}
         <div class="container mt-3 container-products justify-content-center">
             {% for product in object_list %}

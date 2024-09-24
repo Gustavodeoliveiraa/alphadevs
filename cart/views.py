@@ -32,7 +32,7 @@ class AddToCartView(LoginRequiredMixin, View):
             )
 
         except Exception as e:
-            messages.success(
+            messages.error(
                 self.request,
                 f"Erro ao adicionar o produto ao carrinho: {str(e)}"
             )
@@ -44,6 +44,14 @@ class CartListView(LoginRequiredMixin, ListView):
     model = Cart
     context_object_name = 'cart'
     template_name = 'list_cart.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            messages.error(
+                self.request,
+                'Você deve efetuar o login para acessar o carrinho'
+            )
+        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         query = super().get_queryset()

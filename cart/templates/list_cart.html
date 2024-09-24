@@ -9,12 +9,7 @@
 {% block content %}
     {% if messages %}
         {% for message in messages %}
-            {% if message.tags == 'success' %}
-                <div class="alert alert-success text-center container-fluid">
-            {% elif message.tags == 'error' %}
-                <div class="alert alert-danger text-center container-fluid">
-            {% endif %}
-            
+            <div class="alert {{message.tags}} text-center container-fluid">
                 <p>{{ message }}</p>
             </div>
         {% endfor %}
