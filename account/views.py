@@ -4,7 +4,7 @@ from django.views import generic
 from account.forms import FormUserCreation
 from django.contrib.auth.views import LoginView
 from product.models import Category
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 from django.contrib import messages
 
 
@@ -20,7 +20,15 @@ class CreateUserView(generic.CreateView):
 
     def form_valid(self, form):
         messages.success(self.request, 'Cadastro concluído com sucesso')
-        return super().form_valid(form)
+        form = super().form_valid(form)
+
+        user = authenticate(
+            self.request,
+            username=self.request.POST['username'],
+            password=self.request.POST['password1'],
+        )
+        login(self.request, user)
+        return form
 
     def form_invalid(self, form):
         response = super().form_invalid(form)
@@ -29,16 +37,15 @@ class CreateUserView(generic.CreateView):
 
 class LoginUserView(LoginView):
     success_url = reverse_lazy('products:list')
-    template_name = 'components/register.html'
+    template_name = 'components/login.html'
 
     def form_valid(self, form):
-        print('autenticado')
+        messages.success(self.request, 'Login efetuado com sucesso !')
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        super().form_invalid(form)
-        print('Login ou Senha ERRADAS')
-        return redirect('products:list')
+        messages.error(self.request, 'Email ou Senha Errados')
+        return super().form_invalid(form)
 
 
 def logout_view(request):
