@@ -122,4 +122,10 @@ class ProcessEmail(LoginRequiredMixin, View):
             '', [os.environ.get('EMAIL_HOST_USER')]  # type: ignore
         )
 
+        messages.success(
+            self.request,
+            'Agradecemos o seu pedido. Em breve, um de nossos representantes \
+                entrará em contato com você para confirmar a compra. '
+        )
+
         return redirect(reverse_lazy('cart_list'))
